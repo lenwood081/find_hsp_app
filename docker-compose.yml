@@ -1,0 +1,12 @@
+version '3.8'
+
+services:
+  flutter:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: flutter_dev
+    volumes:
+      - .:/home/developer/app
+    working_dir: /home/developer/app
+    tty: true
