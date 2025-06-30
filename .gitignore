@@ -35,6 +35,8 @@ analysis_benchmark.json
 .dart_tool/
 .flutter-plugins
 .flutter-plugins-dependencies
+.idea/
+.pubspec.lock
 **/generated_plugin_registrant.dart
 .packages
 .pub-preload-cache/
