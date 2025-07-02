@@ -5,10 +5,23 @@ plugins {
     id("dev.flutter.flutter-gradle-plugin")
 }
 
+// IMPORT API KEY from locals.properties
+import java.util.Properties
+
+val localProperties = Properties()
+val localPropertiesFile = rootProject.file("local.properties")
+
+if (localPropertiesFile.exists()) {
+    localProperties.load(localPropertiesFile.inputStream())
+}
+
+val mapsApiKey: String? = localProperties.getProperty("MAPS_API_KEY")
+
 android {
     namespace = "com.example.find_hsp_app"
     compileSdk = flutter.compileSdkVersion
     ndkVersion = flutter.ndkVersion
+    // compileSdkVersion 35
 
     compileOptions {
         sourceCompatibility = JavaVersion.VERSION_11
@@ -24,10 +37,12 @@ android {
         applicationId = "com.example.find_hsp_app"
         // You can update the following values to match your application needs.
         // For more information, see: https://flutter.dev/to/review-gradle-config.
-        minSdk = flutter.minSdkVersion
+        minSdk = 21
         targetSdk = flutter.targetSdkVersion
         versionCode = flutter.versionCode
         versionName = flutter.versionName
+
+        manifestPlaceholders["MAPS_API_KEY"] = mapsApiKey ?: ""
     }
 
     buildTypes {
